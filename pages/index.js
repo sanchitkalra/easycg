@@ -5,8 +5,31 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
 
   const [group, setGroup] = React.useState(null)
+  const [tracker, setTracker] = React.useState(0)
+  const [total, setTotal] = React.useState(0)
 
-  var grades = {}
+  function mapGrade(grade) {
+    switch(grade) {
+      case "A":
+        return 10
+      case "A-":
+        return 9
+      case "B":
+        return 8
+      case "B-":
+        return 7
+      case "C":
+        return 6
+      case "C-":
+        return 5
+      case "D":
+        return 4
+      case "E":
+        return 3
+      default:
+        return 10
+    }
+  }
 
   function ChooseGroup() {
     return(
@@ -26,6 +49,114 @@ export default function Home() {
   }
 
   function Group1(props) {
+
+    var count = 8;
+    var credits = 21;
+    var subjects = {
+      "PHY F111" : {
+        weight: 4
+      },
+      "MATH F112" : {
+        weight: 3
+      },
+      "MATH F113" : {
+        weight: 3
+      },
+      "BITS F110" : {
+        weight: 2
+      },
+      "BITS F111" : {
+        weight: 3
+      },
+      "BIO F111" : {
+        weight: 3
+      },
+      "BIO F110" : {
+        weight: 1
+      },
+      "BITS F112" : {
+        weight: 2
+      },
+    }
+    var subKeys = Object.keys(subjects)
+
+    if (tracker < count) {
+      return (
+        <>
+          <GradeOption subject={subKeys[tracker]} weight={subjects[subKeys[tracker]].weight} count={count} />
+        </>
+      )
+    } else {
+
+      var gpa = total/credits
+
+      return(
+        <>
+          <h1 className="text-4xl">
+            Your CGPA is {gpa.toFixed(2)}
+          </h1>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => setGroup(null)}>
+            Calculate again
+          </button>
+        </>
+      )
+    }
+    
+  }
+
+  function Group2(props) {
+
+    var count = 8;
+    var credits = 21;
+    var subjects = {
+      "CS F111" : {
+        weight: 4
+      },
+      "MATH F112" : {
+        weight: 3
+      },
+      "MATH F113" : {
+        weight: 3
+      },
+      "BITS F110" : {
+        weight: 2
+      },
+      "BITS F111" : {
+        weight: 3
+      },
+      "BIO F111" : {
+        weight: 3
+      },
+      "BIO F110" : {
+        weight: 1
+      },
+      "BITS F112" : {
+        weight: 2
+      },
+    }
+    var subKeys = Object.keys(subjects)
+
+    if (tracker < count) {
+      return (
+        <>
+          <GradeOption subject={subKeys[tracker]} weight={subjects[subKeys[tracker]].weight} count={count} />
+        </>
+      )
+    } else {
+
+      var gpa = total/credits
+
+      return(
+        <>
+          <h1 className="text-4xl">
+            Your CGPA is {gpa.toFixed(2)}
+          </h1>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => setGroup(null)}>
+            Calculate again
+          </button>
+        </>
+      )
+    }
     
   }
 
@@ -61,17 +192,28 @@ export default function Home() {
         <button
           className="mt-4 w-80 p-4 rounded-2xl border-2"
           onClick={() => {
-            grades[props.subject] = {grade, weight: props.weight}
-            console.log(grades)
+            // if (tracker < props.count) {
+            //   setTotal(total + mapGrade(grade)*props.weight)
+            //   if (tracker < props.count - 1) {
+            //     setTracker(tracker + 1)
+            //   }
+            // } else {
+            //   setTracker(tracker + 1)
+            // }
+            // console.log(total)
+            if (tracker < props.count) {
+              setTotal(total + mapGrade(grade)*props.weight)
+              setTracker(tracker + 1)
+            }
+            // console.log(total)
+            // grades[props.subject] = {grade, weight: props.weight}
+            // console.log(grades)
+            // setTotal(total + mapGrade(grade)*props.weight)
           }}>
           Next
         </button>
       </>
     )
-  }
-
-  function Group2() {
-
   }
 
   return (
@@ -84,12 +226,14 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Let's calculate your CG
+          Let's calculate your CGPA
         </h1>
 
         {
-          group ? group == 1 ? <GradeOption subject="M2" weight={3} /> : <GradeOption subject="CS F111" weight={4} /> : <ChooseGroup />
+          group ? group == 1 ? <Group1 /> : <Group2 /> : <ChooseGroup />
         }
+
+        {/* <Group2 /> */}
 
       </main>
 
