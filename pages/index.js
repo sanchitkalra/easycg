@@ -8,6 +8,12 @@ export default function Home() {
   const [tracker, setTracker] = React.useState(0)
   const [total, setTotal] = React.useState(0)
 
+  function resetStates() {
+    setGroup(null)
+    setTracker(0)
+    setTotal(0)
+  }
+
   function mapGrade(grade) {
     switch(grade) {
       case "A":
@@ -95,7 +101,7 @@ export default function Home() {
           <h1 className="text-4xl">
             Your CGPA is {gpa.toFixed(2)}
           </h1>
-          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => setGroup(null)}>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => window.location.reload()}>
             Calculate again
           </button>
         </>
@@ -151,7 +157,7 @@ export default function Home() {
           <h1 className="text-4xl">
             Your CGPA is {gpa.toFixed(2)}
           </h1>
-          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => setGroup(null)}>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => window.location.reload()}>
             Calculate again
           </button>
         </>
