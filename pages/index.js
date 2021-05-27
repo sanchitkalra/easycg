@@ -180,13 +180,14 @@ export default function Home() {
             <select onChange={e => {
               setGrade(e.target.value)
               console.log(e.target.value)
-              console.log(grades)
+              // console.log(grades)
             }} className="block appearance-none w-80 bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
               <option>A</option>
               <option>A-</option>
               <option>B</option>
               <option>B-</option>
               <option>C</option>
+              <option>C-</option>
               <option>D</option>
               <option>E</option>
               </select>
