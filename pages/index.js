@@ -101,7 +101,7 @@ export default function Home() {
           <h1 className="text-4xl">
             Your CGPA is {gpa.toFixed(2)}
           </h1>
-          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => window.location.reload()}>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => resetStates()}>
             Calculate again
           </button>
         </>
@@ -157,7 +157,7 @@ export default function Home() {
           <h1 className="text-4xl">
             Your CGPA is {gpa.toFixed(2)}
           </h1>
-          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => window.location.reload()}>
+          <button className="mt-4 w-80 p-4 rounded-2xl border-2" onClick={() => resetStates()}>
             Calculate again
           </button>
         </>
